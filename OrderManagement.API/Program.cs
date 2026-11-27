@@ -38,6 +38,7 @@ var app = builder.Build();
 app.UseCors("NexoraPolicy");
 
 
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

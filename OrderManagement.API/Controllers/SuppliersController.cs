@@ -25,14 +25,23 @@ public class SuppliersController
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, Supplier input)
     {
-        var x = await db.Suppliers.FindAsync(id);
-        if (x is null)
-            return NotFound();
-        x.Name = input.Name;
-        x.Email = input.Email;
-        x.Phone = input.Phone;
-        await db.SaveChangesAsync();
-        return NoContent();
+        try
+        {
+            var x = await db.Suppliers.FindAsync(id);
+            if (x is null)
+                return NotFound();
+            x.Name = input.Name;
+            x.Email = input.Email;
+            x.Phone = input.Phone;
+            await db.SaveChangesAsync();
+            return NoContent();
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+        
     }
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
